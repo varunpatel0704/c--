@@ -18,12 +18,12 @@ class Node{
     }
 };
 
-bool bst(Node* root, int min, int max){
+bool checkbst(Node* root, int min, int max){
     if(root == NULL)
         return true;
     if(root->data >= min && root->data <= max){
-        bool left = bst(root->left, min, root->data);
-        bool right = bst(root->right, root->data, max);
+        bool left = checkbst(root->left, min, root->data);
+        bool right = checkbst(root->right, root->data, max);
         return left && right;
     }
     

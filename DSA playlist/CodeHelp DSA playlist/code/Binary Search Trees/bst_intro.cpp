@@ -36,6 +36,7 @@ Node* createBst(Node* root, int data){
 
     return root;
 }
+
 void input(Node*& root){
     int val;
     cin>>val;
