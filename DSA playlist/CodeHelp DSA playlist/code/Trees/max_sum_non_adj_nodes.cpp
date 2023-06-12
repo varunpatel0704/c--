@@ -21,8 +21,9 @@ class Node{
 // pair<include node sum, exclude node sum>
 pair<int, int> sum(Node* root){
     if(root == NULL)
-        return (make_pair(0,0));
-    
+        return {0, 0};
+    // (make_pair(0, 0));
+
     pair<int, int> left = sum(root->left);
     pair<int, int> right = sum(root->right);
     
