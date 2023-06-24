@@ -34,7 +34,7 @@ bool checkbst(Node* root, int min, int max){
 bool isBST(Node* root) 
 {
     // Your code here
-    return (root, INT64_MIN, INT64_MAX);
+    return checkbst(root, INT64_MIN, INT64_MAX);
 }
 
 int main(){
