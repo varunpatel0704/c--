@@ -86,7 +86,26 @@ void print(vector<int> arr)
     cout << endl;
 }
 
-void heapify(vector<int> &arr, int index)
+
+ void heapify(vector<int> &arr, int n, int i){
+    int largest = i;
+    int left = 2*i + 1;
+    int right = 2*i + 2;
+    
+    if(left < n && arr[largest] < arr[left]){
+        largest = left;
+    }
+    
+    if(right < n && arr[largest] < arr[right])
+        largest = right;
+        
+    if(largest != i){
+        swap(arr[largest], arr[i]);
+        heapify(arr, n, largest);
+    }
+}
+
+/* void heapify(vector<int> &arr, int index)
 {   // check if current node is less than its children and whether it can be adjusted
     
     while(index*2+1 < arr.size()){
@@ -128,12 +147,12 @@ void heapify(vector<int> &arr, int index)
     // else
     //     return;
 }
-
+*/
 void buildMaxHeap(vector<int> &array){
     int index = array.size()/2;
     for (int i = index; i > 0; i--)
     {   
-        heapify(array, i);
+        heapify(array, array.size(), i);
     }
 }
 
