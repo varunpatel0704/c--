@@ -20,7 +20,7 @@ class Node{
 
 pair<int, bool> sumtree(Node* root){
     if(root == NULL){
-        pair<int, bool> p = make_pair(0, true);
+        pair<int, bool> p = make_pair(0, true); //null node is always a sumTree
         return p;
     }
     
@@ -34,15 +34,16 @@ pair<int, bool> sumtree(Node* root){
     pair<int, bool> ans;
     
     
-    if(root->data == left.first+right.first && left.second && right.second){
-        ans.second = true;
-        ans.first = left.first + right.first + root->data;
+    if(root->data == left.first+right.first && left.second && right.second){ // if the sum of current node = 
+        ans.second = true;                                                   // sum of left and right subtrees, then proceed
+        ans.first = left.first + right.first + root->data; // <-- sum of entire subtree including the root node, will be returned.
     }
     else
         ans.second = false;
     
     return ans;
 }
+
 bool isSumTree(Node* root)
 {
     return sumtree(root).second;

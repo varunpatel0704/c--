@@ -54,14 +54,16 @@ bool isMaxHeap(Node* root){
     // case 2:
     if(root->right == NULL){
         // then just check whether left child is greater than current node.
-        if(root->left->data > root->data)
+        if(root->left->data > root->data && left && right)
             return false;
+        else    
+            return true;
     }
     
     // case 3:
     else{
         bool condition = (root->left->data < root->data && 
-                            root->right->data < root->data);
+                          root->right->data < root->data);
         return (left && right && condition);
     }
 }
@@ -77,8 +79,6 @@ bool isHeap(struct Node* tree) {
     else
         return false;
 }
-
-
 
 bool isHeap(struct Node* tree) {
 
@@ -116,10 +116,7 @@ bool isHeap(struct Node* tree) {
                     break;
                 
             } 
-                                                
-            
         }
-
         else{
             // if there is any non NULL element left after poping the q 
             // it means that there is a NULL element b/w two nodes in level order.
@@ -129,9 +126,7 @@ bool isHeap(struct Node* tree) {
                 isHeap=false;
                 break;
             }
-        }
-            
-            
+        }           
     }
     if(!isHeap)
         return false;

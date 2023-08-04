@@ -57,26 +57,28 @@ public:
         // step 2 - now readjust the nodes to maintain heap,
         // this will be done in a top to bottom order.
         int temp = 1;
-        while ((2 * temp + 1) <= size)
+         while (temp <= size)
         {
-            int left = temp * 2 + 1, right = temp * 2, res;
+            int left = temp * 2, right = temp * 2 + 1, max=temp;
 
             // get the index of maximum of left and right child
-            if (arr[left] < arr[right])
-                res = right;
-            else
-                res = left;
+            if (left <= size && arr[max] < arr[left])
+                max = left;
+            if (right <= size && arr[max] < arr[right])
+                max = right;
 
-            if (arr[temp] < arr[res])
+            if (max != temp)
             {
-                swap(arr[temp], arr[res]);
-                temp = res;
+                swap(arr[temp], arr[max]);
+                temp = max;
             }
             else
-                return;
+                break;
         }
+
     }
 };
+
 void print(vector<int> arr)
 {
     for (int i = 1; i < arr.size(); i++)
@@ -86,11 +88,10 @@ void print(vector<int> arr)
     cout << endl;
 }
 
-
  void heapify(vector<int> &arr, int n, int i){
     int largest = i;
-    int left = 2*i + 1;
-    int right = 2*i + 2;
+    int left = 2*i ;
+    int right = 2*i + 1;
     
     if(left < n && arr[largest] < arr[left]){
         largest = left;
@@ -105,49 +106,6 @@ void print(vector<int> arr)
     }
 }
 
-/* void heapify(vector<int> &arr, int index)
-{   // check if current node is less than its children and whether it can be adjusted
-    
-    while(index*2+1 < arr.size()){
-        int left = index * 2 + 1, right = index * 2, res;
-
-        // get the index of maximum of left and right child
-        if (arr[left] < arr[right])
-            res = right;
-        else
-            res = left;
-
-        if (arr[index] < arr[res])
-        {
-            swap(arr[index], arr[res]);
-            index = res;
-        }
-        else
-            return;
-    }
-
-    // recursive solution.
-
-    // if(index*2+1 >= arr.size())
-    //     return;
-
-    // int left = index * 2, right = index*2 + 1, res;
-
-    // if (arr.size() && arr[left] < arr[right])
-    //     res = right;
-    // else 
-    //     res = left;
-
-    // if (arr.size() && arr[index] < arr[res])
-    // {
-    //     swap(arr[index], arr[res]);
-    //     index = res;
-    //     heapify(arr, index);
-    // }
-    // else
-    //     return;
-}
-*/
 void buildMaxHeap(vector<int> &array){
     int index = array.size()/2;
     for (int i = index; i > 0; i--)
@@ -160,9 +118,9 @@ void heapSort(vector<int> &array){
     if(array.size() == 0 || array.size() == 1)
         return;
 
-    
+    // perform repeated deletion till size becomes 1.
     int size = array.size()-1;
-    while (size > 1) // atleast 2 elements are present in heap
+    while (size > 1) // array is sorted by default at size = 1
     {
         // step 1 - swap first and last element
         swap(array[1], array[size]);
@@ -172,28 +130,25 @@ void heapSort(vector<int> &array){
         int temp = 1;
 
         // this logic is same as deletion in heap (pop method).
-        while ((2 * temp + 1) <= size)
+        while (temp <= size)
         {
-            int left = temp * 2 + 1, right = temp * 2, res;
+            int left = temp * 2, right = temp * 2 + 1, max=temp;
 
             // get the index of maximum of left and right child
-            if (array[left] < array[right])
-                res = right;
-            else
-                res = left;
+            if (left <= size && array[max] < array[left])
+                max = left;
+            if (right <= size && array[max] < array[right])
+                max = right;
 
-            if (array[temp] < array[res])
+            if (max != temp)
             {
-                swap(array[temp], array[res]);
-                temp = res;
+                swap(array[temp], array[max]);
+                temp = max;
             }
             else
                 break;
         }
-        
-
-    }
-    
+    } 
 }
 
 int main()
