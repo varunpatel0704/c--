@@ -43,15 +43,12 @@ class stack{
         
         else{
             cout << arr[top] << endl;
-        }
-            
+        }            
     }
 
     bool isEmpty(){
         return (top < 0);
     }
-
-
 };
 
 

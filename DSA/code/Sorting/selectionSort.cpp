@@ -5,12 +5,12 @@ void printArr(int arr[], int len){
     
     for (int i = 0; i < len; i++)
     {
-        cout<<arr[i]<<" ";
+        cout<<arr[i]<<", ";
     }
     cout<<endl;
 }
 
-void selectSort(int arr[], int len){
+void selectionSort(int arr[], int len){
     for (int i = 0; i < len-1; i++)
     {
         int minIndex=i;
@@ -29,15 +29,15 @@ void selectSort(int arr[], int len){
 }
 
 int main(){
-    int arr[5]={7, 8, 1, 9, -3};
+    // int arr[6]={78, 31, 1, 19, -3, 47};
+    int arr[12]={2,1,1,3,1,0,1,3,2,0,0,1};
+    cout<<"\nArray before sorting:  ";
+    printArr(arr, 12);
     
-    cout<<"Before sort "<<endl;
-    printArr(arr, 5);
+    selectionSort(arr, 12);
     
-    selectSort(arr, 5);
-    
-    cout<<"After sort "<<endl;
-    printArr(arr, 5);
-    
+    cout<<"\nArray after sorting:  ";
+    printArr(arr, 12);
+
     return 0;
 }

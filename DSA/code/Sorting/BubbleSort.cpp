@@ -5,7 +5,7 @@ void printArr(int arr[], int len){
     
     for (int i = 0; i < len; i++)
     {
-        cout<<arr[i]<<" ";
+        cout<<arr[i]<<", ";
     }
     cout<<endl;
 }
@@ -21,7 +21,6 @@ void bubbleSort(int arr[], int len){
                 swap(arr[j],arr[j+1]);
                 swapped=true;
             }
-            
         }
 
         if (swapped==false)//<-- this is to optimise the code. break when the array is already sorted.
@@ -29,26 +28,20 @@ void bubbleSort(int arr[], int len){
             cout<<"\nalready sorted"<<endl;
             break;
         }
-        
     }
-    
-    
-    
-
-
 }
 
 int main(){
     
-    int arr[5]={-3, 1, 7, 8, 9};
+    int arr[6]={89, 21, 15, 9, -6, 7};
+    // int arr[12]={2,1,1,3,1,0,1,3,2,0,0,1};
+    cout<<"\nArray before sorting:  ";
+    printArr(arr, 6);
     
-    cout<<"\nBefore sort "<<endl;
-    printArr(arr, 5);
+    bubbleSort(arr, 6);
     
-    bubbleSort(arr, 5);
-    
-    cout<<"\nAfter sort "<<endl;
-    printArr(arr, 5);
+    cout<<"\nArray after sorting:  ";
+    printArr(arr, 6);
 
     return 0;
 }
