@@ -6,14 +6,14 @@ def validateString(str):
             return False
     return True
 
-# userIdentifiers = input("Enter the set of identifiers: ")
-# identifiers = userIdentifiers.split(", ")
-# # print(identifiers)
+userIdentifiers = input("Enter the set of identifiers: ")
+identifiers = userIdentifiers.split(", ")
+# print(identifiers)
 
-# for string in identifiers:
-#     isValid = validateString(string)
-#     if(not isValid):
-#         print("Error: invalid identifier [",string,"];")
+for string in identifiers:
+    isValid = validateString(string)
+    if(not isValid):
+        print("Error: invalid identifier [",string,"];")
 
 userExpression = input("Enter the expression: ")
 expression = userExpression.split(" ")
