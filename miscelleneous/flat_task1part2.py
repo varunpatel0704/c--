@@ -1,54 +1,65 @@
 def validateString(str):
     if(not((str[0] == '_') or (str[0]>='a' and str[0] <= 'z') or (str[0]>='A' and str[0] <= 'Z'))):
         return False
-    for string in str:
-        if(not((string[0] == '_') or (string[0]>='a' and string[0] <= 'z') or (string[0]>='A' and string[0] <= 'Z'))):
+    for ch in str:
+        if(not((ch == '_') or (ch>='a' and ch <= 'z') or (ch>='A' and ch <= 'Z') or (ch >= '0' and ch <= '9'))):
             return False
     return True
 
-userIdentifiers = input("Enter the space separated set of identifiers: ")
+userIdentifiers = input("Enter the set of identifiers: ")
 
 identifiers = userIdentifiers.split(" ")
-print(identifiers)
+userIdentifiers = "".join(identifiers)
+identifiers = userIdentifiers.split(",")
+
 valid = True
 
 for string in identifiers:
+    
     isValid = validateString(string)
     if(not isValid):
         identifiers.remove(string)
-        print(identifiers)
         print("Error: invalid identifier [",string,"];")
         valid = False
         
 if(valid):
     print("All identifiers are valid")
+else:
+    exit()
 
 userExpression = input("Enter the expression: ")
 ls = userExpression.split(" ")
 userExpression = "".join(ls)
+
 i=0 
 j=0
 valid = True
-operators = ['*', '/', '+', '-', '%']
+operators = "*/+-"
 expression = []
 
 for symbol in userExpression:
-    
+
     if(symbol in operators): # arithmetic symbol encountered
-        length = len(expression)
-        top = expression[length-1]
+        if(len(expression) == 0):
+            print("Error: expression starts with operator;")
+            valid = False
+            break
         
+        top = expression[-1]
         if(top in operators): # current symbol as well the symbol on stack top are operators, hence invalid
+            
             print("Error: invalid expression (adjacent occurence of operators is not allowed);")
             valid = False
             break
         
         identifier = userExpression[i:j]
         if(identifier not in identifiers):
-            print("Error: undeclared identifier (", identifier, "is not declared);")
-            valid = False
-            break
-        
+            try:
+                temp = int(identifier)
+            except TypeError:
+                print("Error: undeclared identifier (", identifier, "is not declared);")
+                valid = False
+                break
         expression.append(symbol)
         j+=1
         i=j

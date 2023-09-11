@@ -83,7 +83,7 @@ int main(){
         cout<<"String is invalid"<<endl;
 
     else if(!st.isEmpty())
-        cout<<"stack not empty hence String is invalid"<<endl;
+        cout<<"String is invalid"<<endl;
 
     else    
         cout<<"String is valid"<<endl;

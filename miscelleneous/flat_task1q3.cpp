@@ -45,7 +45,6 @@ class stack{
 int main(){
     stack st(20);
     string str;
-    // bool flag = false;      // flag tells us if 'b' has appeared in the string.
     bool isValid = true;    // true if string is valid and false otherwise.
 
     cout<<"Enter the string (not more than 20 characters): ";
