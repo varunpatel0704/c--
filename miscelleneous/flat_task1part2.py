@@ -1,4 +1,5 @@
 def validateString(str):
+    str.strip()
     if(not((str[0] == '_') or (str[0]>='a' and str[0] <= 'z') or (str[0]>='A' and str[0] <= 'Z'))):
         return False
     for ch in str:
@@ -8,7 +9,7 @@ def validateString(str):
 
 userIdentifiers = input("Enter the set of identifiers: ")
 
-identifiers = userIdentifiers.split(" ")
+identifiers = userIdentifiers.strip().split(" ")
 userIdentifiers = "".join(identifiers)
 identifiers = userIdentifiers.split(",")
 
@@ -48,16 +49,17 @@ for symbol in userExpression:
         top = expression[-1]
         if(top in operators): # current symbol as well the symbol on stack top are operators, hence invalid
             
-            print("Error: invalid expression (adjacent occurence of operators is not allowed);")
+            print("Error: invalid expression (adjacent occurrence of operators is not allowed);")
             valid = False
             break
         
         identifier = userExpression[i:j]
         if(identifier not in identifiers):
             try:
-                temp = int(identifier)
-            except TypeError:
-                print("Error: undeclared identifier (", identifier, "is not declared);")
+                temp = float(identifier)
+                expression.append(temp)
+            except (TypeError, ValueError):
+                print("Error: undeclared identifier (", identifier, "is not declared );")
                 valid = False
                 break
         expression.append(symbol)
@@ -67,6 +69,15 @@ for symbol in userExpression:
     else:
         expression.append(symbol)
         j+=1
-        
+if valid:
+    identifier = userExpression[i:j]
+    if(identifier not in identifiers):
+        try:
+            temp = float(identifier)
+            expression.append(temp)
+        except (TypeError, ValueError):
+            print("Error: undeclared identifier (", identifier, "is not declared );")
+            valid = False
+    
 if valid:
     print("Expression is valid")
