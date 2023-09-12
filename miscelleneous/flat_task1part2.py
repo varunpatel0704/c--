@@ -29,7 +29,7 @@ else:
     exit()
 
 userExpression = input("Enter the expression: ")
-ls = userExpression.split(" ")
+ls = userExpression.strip().split(" ")
 userExpression = "".join(ls)
 
 i=0 
