@@ -186,8 +186,8 @@ void lvlorder(Node* root){
 int main(){
     Node* root = NULL;
     input(root);
-    lvlorder(root);
-
+    lvlorder(root);   
+     
     deleteNode(root, 50);
     cout<<"After deletion: "<<endl;
     lvlorder(root);

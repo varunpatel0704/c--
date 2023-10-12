@@ -5,6 +5,8 @@ using namespace std;
 
 class graph{
     public:
+
+        // adjacency list representation --> node is the key and the list of connected edges is the value.
         unordered_map<int, list<int>> adj;
 
         // method to create edge between two nodes.
