@@ -40,7 +40,7 @@ void Union(int root1, int root2, vector<int> &parent, vector<int> &size){
     }
 }
 
-int minimumSpanningTree(vector<vector<int>>& edges, int V)
+int minimumSpanningTree(vector<vector<int>>& edges, int V, vector<vector<int>> &ans)
 {
     // Kruskal's algorithm.
         
@@ -57,10 +57,10 @@ int minimumSpanningTree(vector<vector<int>>& edges, int V)
     // step 2: traverse edges array and apply union find.
     int mstCost = 0;
     
-    for(auto i: edges){
-        int u = i[0];
-        int v = i[1];
-        int wt = i[2];
+    for(auto edge: edges){
+        int u = edge[0];
+        int v = edge[1];
+        int wt = edge[2];
         
         // find and compare root nodes of u and v.
         int root1 = find(u, parent);
@@ -70,6 +70,7 @@ int minimumSpanningTree(vector<vector<int>>& edges, int V)
             continue;       // and hence connecting them will introduce cycle
         
         else{
+            ans.push_back(edge);
             mstCost += wt;
             Union(root1, root2, parent, size);
         }
@@ -80,12 +81,22 @@ int minimumSpanningTree(vector<vector<int>>& edges, int V)
 }
 
 int main(){
-    vector<vector<int>> edges = {{0, 1, 3},
-                                {0, 2, 1},
-                                {0, 3, 2},
-                                {1, 2, 5},
-                                {1, 3, 2},
-                                {2, 3, 4}};
-    cout<<"mst cost is "<<minimumSpanningTree(edges, 4);
+    vector<vector<int>> edges = {{0, 5, 10},
+                                 {0, 1, 28},
+                                 {5, 4, 25},
+                                 {4, 6, 24},
+                                 {6, 1, 14},
+                                 {3, 2, 12},
+                                 {3, 4, 22},
+                                 {1, 2, 16},
+                                 {6, 3, 18}};
+    vector<vector<int>> mst;
+    int cost = minimumSpanningTree(edges, 7, mst);
+    cout<<"Finding MST using Kruskal's algorithm..."<<endl;
+    cout<<"\nEdges in the MST:"<<endl;
+    for(auto edge: mst){
+        cout << edge[0] << "-" << edge[1] << endl;
+    }
+    cout<<"\nCost of MST is: "<<cost<<endl;
     return 0;
 }

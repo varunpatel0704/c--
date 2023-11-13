@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <queue>
 #include <list>
 using namespace std;
 
@@ -31,6 +32,37 @@ class graph{
     
 };
 
+//BFS
+void BFS(graph &g, vector<int> &ans, int s){
+    unordered_map<int, bool> visited;
+    queue<int> q;
+    q.push(s);
+    visited[s] = true;
+    while(!q.empty()){
+        int front = q.front();
+        q.pop();
+        ans.push_back(front);
+        for(auto neighbour: g.adj[front]){
+            if(!visited[neighbour]){
+                visited[neighbour] = true;
+                q.push(neighbour);
+            }
+        }
+    }
+}
+
+//DFS
+void DFS(graph &g, vector<int> &ans, int s, unordered_map<int, bool> &visited){
+    visited[s] = true;
+    for(auto neighbour: g.adj[s]){
+        if(!visited[neighbour]){
+            ans.push_back(neighbour);
+            DFS(g, ans, neighbour, visited);
+        }
+    }
+}
+
+
 int main(){
     cout<<"Enter the number of edges in the graph: ";
     int m;
@@ -46,5 +78,26 @@ int main(){
     }
     cout<<"\nAdjacency list of the given graph is: "<<endl;
     g1.print();
+
+    vector<int> bfs;
+    //BFS
+    BFS(g1, bfs, 2);
+    cout<<"\nBFS traversal of the given graph is: "<<endl;
+    for(auto item: bfs){
+        cout<<item<<", ";
+    }cout<<endl;
+   
+    //DFS
+    vector<int> dfs;
+    unordered_map<int, bool> visited;
+    dfs.push_back(2);
+    visited[2] = true;
+    DFS(g1, dfs, 2, visited);
+
+    cout<<"\nDFS traversal of the given graph is: "<<endl;
+    for(auto item: dfs){
+        cout<<item<<", ";
+    }cout<<endl;
+
     return 0;
 }
