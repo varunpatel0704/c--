@@ -76,7 +76,7 @@ int fibonacci_i(int n) {
 }
 
 int main() {
-    std::cout<<fibonacci_i(6);
+    std::cout<<fibonacci_i(7);
     // std::vector<std::chrono::duration<double, std::nano>> ans;
     // std::vector<std::chrono::duration<double, std::milli>> ans1;
 
